@@ -68,7 +68,8 @@ const TrackPlayer = () => {
         tracks.forEach((t) => {
           const bump = Math.floor(Math.random() * (t.featured ? 5 : 2));
           const playingBoost = playingId === t.id ? Math.floor(Math.random() * 4) + 1 : 0;
-          updated[t.id] = prev[t.id] + bump + playingBoost;
+          const base = prev[t.id] ?? t.listeners;
+          updated[t.id] = base + bump + playingBoost;
         });
         return updated;
       });
