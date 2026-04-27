@@ -144,8 +144,10 @@ const TrackPlayer = () => {
   const featured = tracks.find((t) => t.featured)!;
   const progress = playingId === featured.id ? (currentTime / featured.duration) * 100 : 0;
   const isFeaturedPlaying = playingId === featured.id && !isPaused;
-  const nowPlaying = playingId !== null ? tracks.find((t) => t.id === playingId) : null;
-  const nowProgress = nowPlaying ? (currentTime / nowPlaying.duration) * 100 : 0;
+  const activeTrack = playingId !== null ? tracks.find((t) => t.id === playingId) : null;
+  const nowPlaying = activeTrack ?? featured;
+  const nowProgress = activeTrack ? (currentTime / nowPlaying.duration) * 100 : 0;
+  const hasActive = !!activeTrack;
 
   return (
     <section className="relative">
