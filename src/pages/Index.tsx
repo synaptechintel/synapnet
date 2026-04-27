@@ -31,6 +31,34 @@ const Index = () => {
             <AudioVisualizer />
           </div>
 
+          {/* Stats row */}
+          <div className="mt-10 grid grid-cols-3 gap-4 max-w-3xl mx-auto border-y py-6" style={{ borderColor: "hsl(var(--border))" }}>
+            <div className="text-center border-r" style={{ borderColor: "hsl(var(--border))" }}>
+              <div className="font-display text-4xl md:text-5xl font-black neon-glow-cyan" style={{ color: "hsl(var(--primary))" }}>
+                22K
+              </div>
+              <div className="text-[10px] md:text-xs font-mono tracking-[0.3em] text-muted-foreground mt-2">
+                LISTENS
+              </div>
+            </div>
+            <div className="text-center border-r" style={{ borderColor: "hsl(var(--border))" }}>
+              <div className="font-display text-4xl md:text-5xl font-black" style={{ color: "hsl(var(--neon-green))", textShadow: "0 0 20px hsl(var(--neon-green) / 0.6)" }}>
+                186
+              </div>
+              <div className="text-[10px] md:text-xs font-mono tracking-[0.3em] text-muted-foreground mt-2">
+                TIER 3 MEMBERS
+              </div>
+            </div>
+            <div className="text-center">
+              <div className="font-display text-4xl md:text-5xl font-black" style={{ color: "hsl(var(--neon-purple, 280 100% 65%))", textShadow: "0 0 20px hsl(var(--neon-purple, 280 100% 65%) / 0.6)" }}>
+                156
+              </div>
+              <div className="text-[10px] md:text-xs font-mono tracking-[0.3em] text-muted-foreground mt-2">
+                AUTOMATIONS
+              </div>
+            </div>
+          </div>
+
           <div className="mt-10 flex flex-col sm:flex-row items-center justify-center gap-4">
             <button
               className="px-8 py-3 border font-display text-sm font-bold tracking-widest transition-all hover:scale-105 neon-border"

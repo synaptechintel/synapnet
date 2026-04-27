@@ -62,7 +62,7 @@ const GlitchHeader = ({ onTripleClick }: GlitchHeaderProps) => {
         <div className="mt-6 flex items-center justify-center gap-3">
           <span className="w-16 h-px bg-primary/40" />
           <span className="text-xs font-mono text-muted-foreground tracking-widest">
-            AUDIO • INTELLIGENCE • OPERATIONS
+            ADVANCED AI • RESEARCH • AUTOMATION • INTELLIGENCE
           </span>
           <span className="w-16 h-px bg-primary/40" />
         </div>
