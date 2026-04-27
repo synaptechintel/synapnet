@@ -18,11 +18,11 @@ interface Track {
 }
 
 const tracks: Track[] = [
-  { id: 1, title: "The Colony", artist: "dMAG", duration: 205, src: theColony, listeners: 482910, featured: true },
-  { id: 2, title: "CBTO (Cybernetic Bio-Technical Ontology)", artist: "SynapTech", duration: 308, src: cbto, listeners: 217845 },
-  { id: 3, title: "Stash House", artist: "dMAG", duration: 97, src: stashHouse, listeners: 184321 },
-  { id: 4, title: "Slime 'Em Out (Flatbush Zombies Remix)", artist: "dMAG", duration: 283, src: slimeEmOut, listeners: 156782 },
-  { id: 5, title: "Filthy", artist: "dMAG", duration: 169, src: filthy, listeners: 98453 },
+  { id: 1, title: "The Colony", artist: "dMAG", duration: 205, src: theColony, listeners: 8420, featured: true },
+  { id: 2, title: "CBTO (Cybernetic Bio-Technical Ontology)", artist: "SynapTech", duration: 308, src: cbto, listeners: 4830 },
+  { id: 3, title: "Stash House", artist: "dMAG", duration: 97, src: stashHouse, listeners: 3710 },
+  { id: 4, title: "Slime 'Em Out (Flatbush Zombies Remix)", artist: "dMAG", duration: 283, src: slimeEmOut, listeners: 2940 },
+  { id: 5, title: "Filthy", artist: "dMAG", duration: 169, src: filthy, listeners: 2100 },
 ];
 
 const formatTime = (s: number) => {
