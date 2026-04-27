@@ -86,7 +86,7 @@ const Index = () => {
       </section>
 
       {/* Main Content */}
-      <div className="max-w-5xl mx-auto px-6 space-y-24 pb-24">
+      <div className="max-w-5xl mx-auto px-6 space-y-24 pb-32">
         {/* Status Bar */}
         <div className="flex items-center gap-4 py-3 px-4 border-y" style={{ borderColor: "hsl(var(--border))" }}>
           <span className="w-2 h-2 rounded-full animate-pulse" style={{ background: "hsl(var(--neon-green))" }} />
