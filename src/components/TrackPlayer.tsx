@@ -90,9 +90,10 @@ const TrackPlayer = () => {
     if (playingId === id && audioRef.current) {
       if (audioRef.current.paused) {
         audioRef.current.play();
+        setIsPaused(false);
       } else {
         audioRef.current.pause();
-        setPlayingId(null);
+        setIsPaused(true);
       }
       return;
     }
@@ -106,11 +107,13 @@ const TrackPlayer = () => {
     audio.addEventListener("timeupdate", () => setCurrentTime(audio.currentTime));
     audio.addEventListener("ended", () => {
       setPlayingId(null);
+      setIsPaused(false);
       setCurrentTime(0);
     });
     audioRef.current = audio;
     audio.play();
     setPlayingId(id);
+    setIsPaused(false);
     setCurrentTime(0);
   };
 
