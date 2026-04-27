@@ -372,7 +372,9 @@ const TrackPlayer = () => {
             <span>{formatTime(nowPlaying.duration)}</span>
           </div>
         </div>
-      </div>
+      </div>,
+      document.body
+      )}
     </section>
   );
 };
