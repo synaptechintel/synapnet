@@ -44,7 +44,8 @@ const formatTime = (s: number) => {
   return `${m}:${sec.toString().padStart(2, "0")}`;
 };
 
-const formatListeners = (n: number) => {
+const formatListeners = (n: number | undefined) => {
+  if (n == null || !isFinite(n)) return "0";
   if (n >= 1_000_000) return (n / 1_000_000).toFixed(1) + "M";
   if (n >= 1_000) return (n / 1_000).toFixed(1) + "K";
   return n.toString();
@@ -67,7 +68,8 @@ const TrackPlayer = () => {
         tracks.forEach((t) => {
           const bump = Math.floor(Math.random() * (t.featured ? 5 : 2));
           const playingBoost = playingId === t.id ? Math.floor(Math.random() * 4) + 1 : 0;
-          updated[t.id] = prev[t.id] + bump + playingBoost;
+          const base = prev[t.id] ?? t.listeners;
+          updated[t.id] = base + bump + playingBoost;
         });
         return updated;
       });
