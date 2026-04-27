@@ -53,6 +53,7 @@ const formatListeners = (n: number | undefined) => {
 
 const TrackPlayer = () => {
   const [playingId, setPlayingId] = useState<number | null>(null);
+  const [isPaused, setIsPaused] = useState(false);
   const [currentTime, setCurrentTime] = useState(0);
   const [volume, setVolume] = useState(0.75);
   const [listenerCounts, setListenerCounts] = useState<Record<number, number>>(
