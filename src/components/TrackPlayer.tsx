@@ -143,7 +143,9 @@ const TrackPlayer = () => {
 
   const featured = tracks.find((t) => t.featured)!;
   const progress = playingId === featured.id ? (currentTime / featured.duration) * 100 : 0;
-  const isFeaturedPlaying = playingId === featured.id && !!audioRef.current && !audioRef.current.paused;
+  const isFeaturedPlaying = playingId === featured.id && !isPaused;
+  const nowPlaying = playingId !== null ? tracks.find((t) => t.id === playingId) : null;
+  const nowProgress = nowPlaying ? (currentTime / nowPlaying.duration) * 100 : 0;
 
   return (
     <section className="relative">
