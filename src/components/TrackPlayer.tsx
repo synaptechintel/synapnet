@@ -24,17 +24,17 @@ interface Track {
 }
 
 const tracks: Track[] = [
-  { id: 1, title: "The Colony (Remastered)", artist: "dMAG", duration: 210, src: theColony, listeners: 482910, featured: true },
-  { id: 2, title: "Slime 'Em Out (Flatbush Zombies Remix)", artist: "dMAG", duration: 283, src: slimeEmOut, listeners: 312487 },
-  { id: 3, title: "Lew Sterrett", artist: "dMAG", duration: 157, src: lewSterrett, listeners: 268145 },
-  { id: 4, title: "Filthy", artist: "dMAG", duration: 169, src: filthy, listeners: 241903 },
-  { id: 5, title: "Snitch", artist: "dMAG", duration: 102, src: snitch, listeners: 198762 },
-  { id: 6, title: "Silent Hill", artist: "dMAG", duration: 186, src: silentHill, listeners: 174228 },
-  { id: 7, title: "Final Form", artist: "dMAG", duration: 309, src: finalForm, listeners: 142051 },
-  { id: 8, title: "Plug Portfolio", artist: "dMAG", duration: 196, src: plugPortfolio, listeners: 121876 },
-  { id: 9, title: "Φ Rising", artist: "SynapTech", duration: 256, src: phiRising, listeners: 104332 },
-  { id: 10, title: "Mobius Loop", artist: "SynapTech", duration: 307, src: mobiusLoop, listeners: 89215 },
-  { id: 11, title: "Whipple 5.0", artist: "dMAG", duration: 122, src: whipple5, listeners: 76498 },
+  { id: 1, title: "The Colony (Remastered)", artist: "dMAG", duration: 210, src: theColony, listeners: 4820, featured: true },
+  { id: 2, title: "Slime 'Em Out (Flatbush Zombies Remix)", artist: "dMAG", duration: 283, src: slimeEmOut, listeners: 3125 },
+  { id: 3, title: "Lew Sterrett", artist: "dMAG", duration: 157, src: lewSterrett, listeners: 2680 },
+  { id: 4, title: "Filthy", artist: "dMAG", duration: 169, src: filthy, listeners: 2418 },
+  { id: 5, title: "Snitch", artist: "dMAG", duration: 102, src: snitch, listeners: 1987 },
+  { id: 6, title: "Silent Hill", artist: "dMAG", duration: 186, src: silentHill, listeners: 1742 },
+  { id: 7, title: "Final Form", artist: "dMAG", duration: 309, src: finalForm, listeners: 1420 },
+  { id: 8, title: "Plug Portfolio", artist: "dMAG", duration: 196, src: plugPortfolio, listeners: 1218 },
+  { id: 9, title: "Φ Rising", artist: "SynapTech", duration: 256, src: phiRising, listeners: 1043 },
+  { id: 10, title: "Mobius Loop", artist: "SynapTech", duration: 307, src: mobiusLoop, listeners: 892 },
+  { id: 11, title: "Whipple 5.0", artist: "dMAG", duration: 122, src: whipple5, listeners: 655 },
 ];
 
 const formatTime = (s: number) => {
