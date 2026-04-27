@@ -1,11 +1,17 @@
 import { useState, useEffect, useRef } from "react";
 import { Play, Pause, Volume2, Headphones, SkipForward, SkipBack } from "lucide-react";
 
-import cbto from "@/assets/tracks/cbto.mp3";
-import stashHouse from "@/assets/tracks/stash-house.mp3";
+import theColony from "@/assets/tracks/the-colony-remastered.m4a";
 import slimeEmOut from "@/assets/tracks/slime-em-out.mp3";
-import theColony from "@/assets/tracks/the-colony.mp3";
+import lewSterrett from "@/assets/tracks/lew-sterrett.mp3";
 import filthy from "@/assets/tracks/filthy.mp3";
+import snitch from "@/assets/tracks/snitch.m4a";
+import silentHill from "@/assets/tracks/silent-hill.m4a";
+import finalForm from "@/assets/tracks/final-form.m4a";
+import plugPortfolio from "@/assets/tracks/plug-portfolio.m4a";
+import whipple5 from "@/assets/tracks/whipple-5.m4a";
+import phiRising from "@/assets/tracks/phi-rising.mp3";
+import mobiusLoop from "@/assets/tracks/mobius-loop.mp3";
 
 interface Track {
   id: number;
@@ -18,11 +24,17 @@ interface Track {
 }
 
 const tracks: Track[] = [
-  { id: 1, title: "The Colony", artist: "dMAG", duration: 205, src: theColony, listeners: 482910, featured: true },
-  { id: 2, title: "CBTO (Cybernetic Bio-Technical Ontology)", artist: "SynapTech", duration: 308, src: cbto, listeners: 217845 },
-  { id: 3, title: "Stash House", artist: "dMAG", duration: 97, src: stashHouse, listeners: 184321 },
-  { id: 4, title: "Slime 'Em Out (Flatbush Zombies Remix)", artist: "dMAG", duration: 283, src: slimeEmOut, listeners: 156782 },
-  { id: 5, title: "Filthy", artist: "dMAG", duration: 169, src: filthy, listeners: 98453 },
+  { id: 1, title: "The Colony (Remastered)", artist: "dMAG", duration: 210, src: theColony, listeners: 482910, featured: true },
+  { id: 2, title: "Slime 'Em Out (Flatbush Zombies Remix)", artist: "dMAG", duration: 283, src: slimeEmOut, listeners: 312487 },
+  { id: 3, title: "Lew Sterrett", artist: "dMAG", duration: 157, src: lewSterrett, listeners: 268145 },
+  { id: 4, title: "Filthy", artist: "dMAG", duration: 169, src: filthy, listeners: 241903 },
+  { id: 5, title: "Snitch", artist: "dMAG", duration: 102, src: snitch, listeners: 198762 },
+  { id: 6, title: "Silent Hill", artist: "dMAG", duration: 186, src: silentHill, listeners: 174228 },
+  { id: 7, title: "Final Form", artist: "dMAG", duration: 309, src: finalForm, listeners: 142051 },
+  { id: 8, title: "Plug Portfolio", artist: "dMAG", duration: 196, src: plugPortfolio, listeners: 121876 },
+  { id: 9, title: "Φ Rising", artist: "SynapTech", duration: 256, src: phiRising, listeners: 104332 },
+  { id: 10, title: "Mobius Loop", artist: "SynapTech", duration: 307, src: mobiusLoop, listeners: 89215 },
+  { id: 11, title: "Whipple 5.0", artist: "dMAG", duration: 122, src: whipple5, listeners: 76498 },
 ];
 
 const formatTime = (s: number) => {
