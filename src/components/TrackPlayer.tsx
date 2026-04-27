@@ -1,4 +1,5 @@
 import { useState, useEffect, useRef } from "react";
+import { createPortal } from "react-dom";
 import { Play, Pause, Volume2, Headphones, SkipForward, SkipBack } from "lucide-react";
 
 import theColony from "@/assets/tracks/the-colony-remastered.m4a";
@@ -277,9 +278,10 @@ const TrackPlayer = () => {
         })}
       </div>
 
-      {/* Now Playing fixed bar — always visible */}
+      {/* Now Playing fixed bar — portaled to body so nothing can clip it */}
+      {createPortal(
       <div
-        className="fixed bottom-0 left-0 right-0 z-50 border-t border-primary/40 backdrop-blur-md scanline"
+        className="fixed bottom-0 left-0 right-0 z-[9999] border-t border-primary/40 backdrop-blur-md scanline"
         style={{ background: "hsl(var(--dark-base) / 0.92)" }}
       >
         {/* Time slider */}
@@ -370,7 +372,9 @@ const TrackPlayer = () => {
             <span>{formatTime(nowPlaying.duration)}</span>
           </div>
         </div>
-      </div>
+      </div>,
+      document.body
+      )}
     </section>
   );
 };
