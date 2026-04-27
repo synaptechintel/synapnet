@@ -144,8 +144,10 @@ const TrackPlayer = () => {
   const featured = tracks.find((t) => t.featured)!;
   const progress = playingId === featured.id ? (currentTime / featured.duration) * 100 : 0;
   const isFeaturedPlaying = playingId === featured.id && !isPaused;
-  const nowPlaying = playingId !== null ? tracks.find((t) => t.id === playingId) : null;
-  const nowProgress = nowPlaying ? (currentTime / nowPlaying.duration) * 100 : 0;
+  const activeTrack = playingId !== null ? tracks.find((t) => t.id === playingId) : null;
+  const nowPlaying = activeTrack ?? featured;
+  const nowProgress = activeTrack ? (currentTime / nowPlaying.duration) * 100 : 0;
+  const hasActive = !!activeTrack;
 
   return (
     <section className="relative">
@@ -275,83 +277,100 @@ const TrackPlayer = () => {
         })}
       </div>
 
-      {/* Now Playing fixed bar */}
-      {nowPlaying && (
+      {/* Now Playing fixed bar — always visible */}
+      <div
+        className="fixed bottom-0 left-0 right-0 z-50 border-t border-primary/40 backdrop-blur-md scanline"
+        style={{ background: "hsl(var(--dark-base) / 0.92)" }}
+      >
+        {/* Time slider */}
         <div
-          className="fixed bottom-0 left-0 right-0 z-50 border-t border-primary/40 backdrop-blur-md scanline"
-          style={{ background: "hsl(var(--dark-base) / 0.92)" }}
+          className="w-full h-1.5 bg-muted cursor-pointer group"
+          onClick={(e) => hasActive && seek(e, nowPlaying.duration)}
         >
-          {/* Time slider */}
           <div
-            className="w-full h-1.5 bg-muted cursor-pointer group"
-            onClick={(e) => seek(e, nowPlaying.duration)}
+            className="h-full transition-all duration-200 relative"
+            style={{
+              width: `${nowProgress}%`,
+              background: "linear-gradient(90deg, hsl(var(--neon-cyan)), hsl(var(--neon-green)))",
+              boxShadow: hasActive ? "0 0 10px hsl(var(--neon-cyan) / 0.6)" : "none",
+            }}
           >
-            <div
-              className="h-full transition-all duration-200 relative"
-              style={{
-                width: `${nowProgress}%`,
-                background: "linear-gradient(90deg, hsl(var(--neon-cyan)), hsl(var(--neon-green)))",
-                boxShadow: "0 0 10px hsl(var(--neon-cyan) / 0.6)",
-              }}
-            >
-              <span
-                className="absolute right-0 top-1/2 -translate-y-1/2 w-3 h-3 rounded-full opacity-0 group-hover:opacity-100 transition-opacity"
-                style={{ background: "hsl(var(--neon-cyan))", boxShadow: "0 0 8px hsl(var(--neon-cyan))" }}
-              />
-            </div>
-          </div>
-
-          <div className="max-w-5xl mx-auto px-4 py-3 flex items-center gap-4">
-            {/* Track info */}
-            <div className="flex items-center gap-3 min-w-0 flex-1">
-              <span
-                className="w-2 h-2 rounded-full animate-pulse shrink-0"
-                style={{ background: isPaused ? "hsl(var(--neon-red))" : "hsl(var(--neon-green))" }}
-              />
-              <div className="min-w-0">
-                <p className="text-[10px] font-mono tracking-[0.3em] uppercase text-muted-foreground">
-                  {isPaused ? "// PAUSED" : "// NOW PLAYING"}
-                </p>
-                <p className="text-sm font-medium truncate" style={{ color: "hsl(var(--foreground))" }}>
-                  {nowPlaying.title}
-                </p>
-              </div>
-            </div>
-
-            {/* Controls */}
-            <div className="flex items-center gap-3 shrink-0">
-              <button onClick={() => skip(-1)} className="text-muted-foreground hover:text-primary transition-colors">
-                <SkipBack className="w-5 h-5" />
-              </button>
-              <button
-                onClick={() => playTrack(nowPlaying.id)}
-                className="w-10 h-10 border-2 flex items-center justify-center transition-all hover:scale-105"
-                style={{
-                  borderColor: "hsl(var(--primary))",
-                  background: !isPaused ? "hsl(var(--primary) / 0.15)" : "transparent",
-                  boxShadow: !isPaused ? "0 0 15px hsl(var(--neon-cyan) / 0.4)" : "none",
-                }}
-              >
-                {isPaused ? (
-                  <Play className="w-4 h-4 ml-0.5" style={{ color: "hsl(var(--primary))" }} />
-                ) : (
-                  <Pause className="w-4 h-4" style={{ color: "hsl(var(--primary))" }} />
-                )}
-              </button>
-              <button onClick={() => skip(1)} className="text-muted-foreground hover:text-primary transition-colors">
-                <SkipForward className="w-5 h-5" />
-              </button>
-            </div>
-
-            {/* Time */}
-            <div className="hidden sm:flex items-center gap-2 font-mono text-xs text-muted-foreground shrink-0 tabular-nums">
-              <span style={{ color: "hsl(var(--neon-cyan))" }}>{formatTime(currentTime)}</span>
-              <span>/</span>
-              <span>{formatTime(nowPlaying.duration)}</span>
-            </div>
+            <span
+              className="absolute right-0 top-1/2 -translate-y-1/2 w-3 h-3 rounded-full opacity-0 group-hover:opacity-100 transition-opacity"
+              style={{ background: "hsl(var(--neon-cyan))", boxShadow: "0 0 8px hsl(var(--neon-cyan))" }}
+            />
           </div>
         </div>
-      )}
+
+        <div className="max-w-5xl mx-auto px-4 py-3 flex items-center gap-4">
+          {/* Track info */}
+          <div className="flex items-center gap-3 min-w-0 flex-1">
+            <span
+              className="w-2 h-2 rounded-full animate-pulse shrink-0"
+              style={{
+                background: !hasActive
+                  ? "hsl(var(--muted-foreground))"
+                  : isPaused
+                  ? "hsl(var(--neon-red))"
+                  : "hsl(var(--neon-green))",
+              }}
+            />
+            <div className="min-w-0">
+              <p className="text-[10px] font-mono tracking-[0.3em] uppercase text-muted-foreground">
+                {!hasActive ? "// STANDBY" : isPaused ? "// PAUSED" : "// NOW PLAYING"}
+              </p>
+              <p
+                className="text-sm font-medium truncate"
+                style={{ color: hasActive ? "hsl(var(--foreground))" : "hsl(var(--muted-foreground))" }}
+              >
+                {hasActive ? nowPlaying.title : "Select a signal to broadcast"}
+              </p>
+            </div>
+          </div>
+
+          {/* Controls */}
+          <div className="flex items-center gap-3 shrink-0">
+            <button
+              onClick={() => skip(-1)}
+              disabled={!hasActive}
+              className="text-muted-foreground hover:text-primary transition-colors disabled:opacity-30 disabled:hover:text-muted-foreground"
+            >
+              <SkipBack className="w-5 h-5" />
+            </button>
+            <button
+              onClick={() => playTrack(nowPlaying.id)}
+              className="w-10 h-10 border-2 flex items-center justify-center transition-all hover:scale-105"
+              style={{
+                borderColor: "hsl(var(--primary))",
+                background: hasActive && !isPaused ? "hsl(var(--primary) / 0.15)" : "transparent",
+                boxShadow: hasActive && !isPaused ? "0 0 15px hsl(var(--neon-cyan) / 0.4)" : "none",
+              }}
+            >
+              {hasActive && !isPaused ? (
+                <Pause className="w-4 h-4" style={{ color: "hsl(var(--primary))" }} />
+              ) : (
+                <Play className="w-4 h-4 ml-0.5" style={{ color: "hsl(var(--primary))" }} />
+              )}
+            </button>
+            <button
+              onClick={() => skip(1)}
+              disabled={!hasActive}
+              className="text-muted-foreground hover:text-primary transition-colors disabled:opacity-30 disabled:hover:text-muted-foreground"
+            >
+              <SkipForward className="w-5 h-5" />
+            </button>
+          </div>
+
+          {/* Time */}
+          <div className="hidden sm:flex items-center gap-2 font-mono text-xs text-muted-foreground shrink-0 tabular-nums">
+            <span style={{ color: hasActive ? "hsl(var(--neon-cyan))" : undefined }}>
+              {formatTime(hasActive ? currentTime : 0)}
+            </span>
+            <span>/</span>
+            <span>{formatTime(nowPlaying.duration)}</span>
+          </div>
+        </div>
+      </div>
     </section>
   );
 };
