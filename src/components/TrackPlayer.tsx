@@ -281,8 +281,14 @@ const TrackPlayer = () => {
       {/* Now Playing fixed bar — portaled to body so nothing can clip it */}
       {createPortal(
       <div
-        className="fixed bottom-0 left-0 right-0 z-[9999] border-t border-primary/40 backdrop-blur-md scanline"
-        style={{ background: "hsl(var(--dark-base) / 0.92)" }}
+        className="z-[9999] border-t border-primary/40 backdrop-blur-md"
+        style={{
+          position: "fixed",
+          left: 0,
+          right: 0,
+          bottom: 0,
+          background: "hsl(var(--dark-base) / 0.92)",
+        }}
       >
         {/* Time slider */}
         <div
