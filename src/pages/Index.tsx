@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { Link } from "react-router-dom";
 import heroBg from "@/assets/hero-bg.jpg";
 import GlitchHeader from "@/components/GlitchHeader";
 import TrackPlayer from "@/components/TrackPlayer";
@@ -6,7 +7,7 @@ import SubscriptionTiers from "@/components/SubscriptionTiers";
 import EasterEggModal from "@/components/EasterEggModal";
 import ProtectedSections from "@/components/ProtectedSections";
 import AudioVisualizer from "@/components/AudioVisualizer";
-import { Shield, Terminal } from "lucide-react";
+import { Shield, Terminal, Music, Flame } from "lucide-react";
 
 const Index = () => {
   const [easterEggOpen, setEasterEggOpen] = useState(false);
@@ -71,7 +72,8 @@ const Index = () => {
               <Shield className="w-4 h-4 inline mr-2" />
               REQUEST ACCESS
             </button>
-            <button
+            <Link
+              to="/dmag"
               className="px-8 py-3 border font-display text-sm font-bold tracking-widest transition-all hover:scale-105"
               style={{
                 borderColor: "hsl(var(--muted-foreground) / 0.3)",
@@ -80,7 +82,28 @@ const Index = () => {
             >
               <Terminal className="w-4 h-4 inline mr-2" />
               VIEW INTEL
-            </button>
+            </Link>
+          </div>
+
+          {/* Big music CTA */}
+          <div className="mt-10 flex justify-center">
+            <Link
+              to="/dmag"
+              className="group relative inline-flex items-center gap-4 px-10 py-5 border-2 font-display text-lg md:text-xl font-black tracking-[0.3em] transition-all hover:scale-105 overflow-hidden"
+              style={{
+                borderColor: "hsl(var(--neon-red))",
+                color: "hsl(var(--neon-red))",
+                background: "hsl(var(--neon-red) / 0.08)",
+                boxShadow: "0 0 30px hsl(var(--neon-red) / 0.4), inset 0 0 20px hsl(var(--neon-red) / 0.1)",
+              }}
+            >
+              <span className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity"
+                style={{ background: "hsl(var(--neon-red) / 0.15)" }}
+              />
+              <Music className="w-6 h-6 relative z-10 animate-pulse" />
+              <span className="relative z-10">ENTER dMAG // MUSIC</span>
+              <Flame className="w-6 h-6 relative z-10" />
+            </Link>
           </div>
         </div>
       </section>
