@@ -1,7 +1,27 @@
-import { useState } from "react";
+import { useState, useRef, useEffect } from "react";
 import { Link } from "react-router-dom";
-import { ArrowLeft, ShoppingBag, Flame, MapPin, Instagram, Music2, Play } from "lucide-react";
+import { ArrowLeft, ShoppingBag, Flame, MapPin, Instagram, Music2, Play, Pause } from "lucide-react";
 import dmagHero from "@/assets/dmag-hero.jpg";
+import theColony from "@/assets/tracks/the-colony-remastered.m4a";
+import slimeEmOut from "@/assets/tracks/slime-em-out.mp3";
+import lewSterrett from "@/assets/tracks/lew-sterrett.mp3";
+import filthy from "@/assets/tracks/filthy.mp3";
+import snitch from "@/assets/tracks/snitch.m4a";
+import silentHill from "@/assets/tracks/silent-hill.m4a";
+import finalForm from "@/assets/tracks/final-form.m4a";
+import plugPortfolio from "@/assets/tracks/plug-portfolio.m4a";
+
+const vaultTracks = [
+  { n: "01", t: "HOOD SHIT DAVE", d: "0:00", src: "/audio/hood-shit-dave.mp3", hot: true },
+  { n: "02", t: "THE COLONY (REMASTERED)", d: "3:30", src: theColony, hot: true },
+  { n: "03", t: "SLIME 'EM OUT", d: "4:43", src: slimeEmOut },
+  { n: "04", t: "LEW STERRETT", d: "2:37", src: lewSterrett, hot: true },
+  { n: "05", t: "FILTHY", d: "2:49", src: filthy },
+  { n: "06", t: "SNITCH", d: "1:42", src: snitch },
+  { n: "07", t: "SILENT HILL", d: "3:06", src: silentHill },
+  { n: "08", t: "FINAL FORM", d: "5:09", src: finalForm },
+  { n: "09", t: "PLUG PORTFOLIO", d: "3:16", src: plugPortfolio, hot: true },
+];
 import merchTee from "@/assets/merch-tee.jpg";
 import merchHoodie from "@/assets/merch-hoodie.jpg";
 import merchCap from "@/assets/merch-cap.jpg";
