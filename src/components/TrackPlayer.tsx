@@ -147,6 +147,11 @@ const TrackPlayer = () => {
     };
   }, []);
 
+  const [trackListContainer, setTrackListContainer] = useState<HTMLElement | null>(null);
+  useEffect(() => {
+    setTrackListContainer(document.getElementById("track-list-anchor"));
+  }, []);
+
   const featured = tracks.find((t) => t.featured)!;
   const progress = playingId === featured.id ? (currentTime / featured.duration) * 100 : 0;
   const isFeaturedPlaying = playingId === featured.id && !isPaused;
