@@ -106,6 +106,10 @@ const TrackPlayer = () => {
 
     const audio = new Audio(track.src);
     audio.volume = volume;
+    audio.addEventListener("loadedmetadata", () => {
+      if (isFinite(audio.duration)) track.duration = audio.duration;
+      setCurrentTime((c) => c);
+    });
     audio.addEventListener("timeupdate", () => setCurrentTime(audio.currentTime));
     audio.addEventListener("ended", () => {
       setPlayingId(null);
