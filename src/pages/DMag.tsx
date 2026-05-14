@@ -83,7 +83,7 @@ const DMag = () => {
               <Play className="w-5 h-5 fill-black" /> STREAM THE TAPE
             </a>
             <a href="#shop" className="inline-flex items-center gap-3 px-8 py-4 border-2 border-white hover:bg-white hover:text-black font-black text-lg tracking-widest transition-all" style={{ fontFamily: "'Archivo Black', sans-serif" }}>
-              <ShoppingBag className="w-5 h-5" /> COP THE MERCH
+              <ShoppingBag className="w-5 h-5" /> PLUG MERCH
             </a>
           </div>
         </div>
