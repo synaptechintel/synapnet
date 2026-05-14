@@ -149,7 +149,14 @@ const TrackPlayer = () => {
 
   const [trackListContainer, setTrackListContainer] = useState<HTMLElement | null>(null);
   useEffect(() => {
-    setTrackListContainer(document.getElementById("track-list-anchor"));
+    const check = () => {
+      const el = document.getElementById("track-list-anchor");
+      if (el) { setTrackListContainer(el); return true; }
+      return false;
+    };
+    if (check()) return;
+    const id = setInterval(() => { if (check()) clearInterval(id); }, 100);
+    return () => clearInterval(id);
   }, []);
 
   const featured = tracks.find((t) => t.featured)!;
