@@ -130,6 +130,9 @@ const Index = () => {
         {/* Subscription Tiers */}
         <SubscriptionTiers />
 
+        {/* Track List Anchor */}
+        <div id="track-list-anchor" />
+
         {/* Footer */}
         <footer className="border-t pt-8 text-center" style={{ borderColor: "hsl(var(--border))" }}>
           <p className="text-xs font-mono text-muted-foreground tracking-widest">
