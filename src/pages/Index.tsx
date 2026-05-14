@@ -1,8 +1,10 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import heroBg from "@/assets/hero-bg.jpg";
+import { TrackPlayerProvider } from "@/contexts/TrackPlayerContext";
 import GlitchHeader from "@/components/GlitchHeader";
 import TrackPlayer from "@/components/TrackPlayer";
+import TrackList from "@/components/TrackList";
 import SubscriptionTiers from "@/components/SubscriptionTiers";
 import EasterEggModal from "@/components/EasterEggModal";
 import ProtectedSections from "@/components/ProtectedSections";
@@ -109,37 +111,42 @@ const Index = () => {
       </section>
 
       {/* Main Content */}
-      <div className="max-w-5xl mx-auto px-6 space-y-24 pb-32">
-        {/* Status Bar */}
-        <div className="flex items-center gap-4 py-3 px-4 border-y" style={{ borderColor: "hsl(var(--border))" }}>
-          <span className="w-2 h-2 rounded-full animate-pulse" style={{ background: "hsl(var(--neon-green))" }} />
-          <span className="text-xs font-mono text-muted-foreground">
-            SYSTEM STATUS: <span style={{ color: "hsl(var(--neon-green))" }}>OPERATIONAL</span>
-          </span>
-          <span className="text-xs font-mono text-muted-foreground ml-auto">
-            UPLINK: ACTIVE • LATENCY: 12ms
-          </span>
+      <TrackPlayerProvider>
+        <div className="max-w-5xl mx-auto px-6 space-y-24 pb-32">
+          {/* Status Bar */}
+          <div className="flex items-center gap-4 py-3 px-4 border-y" style={{ borderColor: "hsl(var(--border))" }}>
+            <span className="w-2 h-2 rounded-full animate-pulse" style={{ background: "hsl(var(--neon-green))" }} />
+            <span className="text-xs font-mono text-muted-foreground">
+              SYSTEM STATUS: <span style={{ color: "hsl(var(--neon-green))" }}>OPERATIONAL</span>
+            </span>
+            <span className="text-xs font-mono text-muted-foreground ml-auto">
+              UPLINK: ACTIVE • LATENCY: 12ms
+            </span>
+          </div>
+
+          {/* Track Player */}
+          <TrackPlayer />
+
+          {/* Protected Sections */}
+          <ProtectedSections />
+
+          {/* Subscription Tiers */}
+          <SubscriptionTiers />
+
+          {/* Track List */}
+          <TrackList />
+
+          {/* Footer */}
+          <footer className="border-t pt-8 text-center" style={{ borderColor: "hsl(var(--border))" }}>
+            <p className="text-xs font-mono text-muted-foreground tracking-widest">
+              © 2026 SYNAPTECH INTELLIGENCE SYSTEMS — ALL SIGNALS ENCRYPTED
+            </p>
+            <p className="text-xs font-mono text-muted-foreground/50 mt-2">
+              [ UNAUTHORIZED ACCESS WILL BE TRACED AND REPORTED ]
+            </p>
+          </footer>
         </div>
-
-        {/* Track Player */}
-        <TrackPlayer />
-
-        {/* Protected Sections */}
-        <ProtectedSections />
-
-        {/* Subscription Tiers */}
-        <SubscriptionTiers />
-
-        {/* Footer */}
-        <footer className="border-t pt-8 text-center" style={{ borderColor: "hsl(var(--border))" }}>
-          <p className="text-xs font-mono text-muted-foreground tracking-widest">
-            © 2026 SYNAPTECH INTELLIGENCE SYSTEMS — ALL SIGNALS ENCRYPTED
-          </p>
-          <p className="text-xs font-mono text-muted-foreground/50 mt-2">
-            [ UNAUTHORIZED ACCESS WILL BE TRACED AND REPORTED ]
-          </p>
-        </footer>
-      </div>
+      </TrackPlayerProvider>
 
       {/* Easter Egg Modal */}
       <EasterEggModal isOpen={easterEggOpen} onClose={() => setEasterEggOpen(false)} />
