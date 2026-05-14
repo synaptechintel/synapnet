@@ -68,14 +68,14 @@ const DMag = () => {
 
         <div className="relative z-10 max-w-7xl mx-auto px-5 pb-16 w-full">
           <p className="text-red-500 text-sm tracking-[0.5em] mb-3" style={{ fontFamily: "'Permanent Marker', cursive" }}>
-            // STREET CERTIFIED
+            WEAR THE STREET. DON'T BLINK.
           </p>
           <h1 className="text-[18vw] md:text-[14rem] leading-[0.85] font-black uppercase" style={{ fontFamily: "'Archivo Black', sans-serif", letterSpacing: "-0.04em" }}>
-            <span className="block text-white">d</span>
-            <span className="block text-red-600 -mt-4 md:-mt-12" style={{ textShadow: "6px 6px 0 #000, -2px -2px 0 #fff" }}>MAG</span>
+            <span className="block text-white">dMAG</span>
+            <span className="block text-red-600 -mt-4 md:-mt-12" style={{ textShadow: "6px 6px 0 #000, -2px -2px 0 #fff" }}>MERCH</span>
           </h1>
-          <p className="mt-6 text-2xl md:text-4xl max-w-2xl uppercase leading-tight" style={{ fontFamily: "'Permanent Marker', cursive", color: "#ff3030" }}>
-            "Plug at the border. Don't blink in Dallas."
+          <p className="mt-6 text-2xl md:text-4xl max-w-2xl uppercase leading-tight" style={{ fontFamily: "'Inter', sans-serif", color: "#ffffff" }}>
+            Official street-certified apparel and limited drops.
           </p>
 
           <div className="mt-8 flex flex-wrap gap-4">
