@@ -1,7 +1,27 @@
-import { useState } from "react";
+import { useState, useRef, useEffect } from "react";
 import { Link } from "react-router-dom";
-import { ArrowLeft, ShoppingBag, Flame, MapPin, Instagram, Music2, Play } from "lucide-react";
+import { ArrowLeft, ShoppingBag, Flame, MapPin, Instagram, Music2, Play, Pause } from "lucide-react";
 import dmagHero from "@/assets/dmag-hero.jpg";
+import theColony from "@/assets/tracks/the-colony-remastered.m4a";
+import slimeEmOut from "@/assets/tracks/slime-em-out.mp3";
+import lewSterrett from "@/assets/tracks/lew-sterrett.mp3";
+import filthy from "@/assets/tracks/filthy.mp3";
+import snitch from "@/assets/tracks/snitch.m4a";
+import silentHill from "@/assets/tracks/silent-hill.m4a";
+import finalForm from "@/assets/tracks/final-form.m4a";
+import plugPortfolio from "@/assets/tracks/plug-portfolio.m4a";
+
+const vaultTracks = [
+  { n: "01", t: "HOOD SHIT DAVE", d: "0:00", src: "/audio/hood-shit-dave.mp3", hot: true },
+  { n: "02", t: "THE COLONY (REMASTERED)", d: "3:30", src: theColony, hot: true },
+  { n: "03", t: "SLIME 'EM OUT", d: "4:43", src: slimeEmOut },
+  { n: "04", t: "LEW STERRETT", d: "2:37", src: lewSterrett, hot: true },
+  { n: "05", t: "FILTHY", d: "2:49", src: filthy },
+  { n: "06", t: "SNITCH", d: "1:42", src: snitch },
+  { n: "07", t: "SILENT HILL", d: "3:06", src: silentHill },
+  { n: "08", t: "FINAL FORM", d: "5:09", src: finalForm },
+  { n: "09", t: "PLUG PORTFOLIO", d: "3:16", src: plugPortfolio, hot: true },
+];
 import merchTee from "@/assets/merch-tee.jpg";
 import merchHoodie from "@/assets/merch-hoodie.jpg";
 import merchCap from "@/assets/merch-cap.jpg";
@@ -32,6 +52,24 @@ const tour = [
 
 const DMag = () => {
   const [cart, setCart] = useState<number[]>([]);
+  const [playingSrc, setPlayingSrc] = useState<string | null>(null);
+  const audioRef = useRef<HTMLAudioElement | null>(null);
+
+  useEffect(() => () => { audioRef.current?.pause(); }, []);
+
+  const toggleTrack = (src: string) => {
+    if (playingSrc === src && audioRef.current) {
+      if (audioRef.current.paused) { audioRef.current.play(); setPlayingSrc(src); }
+      else { audioRef.current.pause(); setPlayingSrc(null); }
+      return;
+    }
+    audioRef.current?.pause();
+    const a = new Audio(src);
+    a.addEventListener("ended", () => setPlayingSrc(null));
+    audioRef.current = a;
+    a.play();
+    setPlayingSrc(src);
+  };
 
   return (
     <div className="min-h-screen bg-[#0a0a0a] text-white overflow-x-hidden" style={{ fontFamily: "'Bebas Neue', 'Anton', 'Impact', sans-serif" }}>
@@ -107,7 +145,7 @@ const DMag = () => {
           <div>
             <p className="text-red-500 text-sm tracking-[0.5em] mb-2" style={{ fontFamily: "'Permanent Marker', cursive" }}>// THE CATALOG</p>
             <h2 className="text-7xl md:text-9xl font-black uppercase" style={{ fontFamily: "'Archivo Black', sans-serif" }}>
-              THE <span className="text-red-600">TAPE</span>
+              THE <span className="text-red-600">VAULT</span>
             </h2>
           </div>
           <div className="flex gap-3">
@@ -120,28 +158,32 @@ const DMag = () => {
         </div>
 
         <div className="grid md:grid-cols-2 gap-2">
-          {[
-            { n: "01", t: "THE COLONY (REMASTERED)", d: "3:30", hot: true },
-            { n: "02", t: "SLIME 'EM OUT", d: "4:43" },
-            { n: "03", t: "LEW STERRETT", d: "2:37", hot: true },
-            { n: "04", t: "FILTHY", d: "2:49" },
-            { n: "05", t: "SNITCH", d: "1:42" },
-            { n: "06", t: "SILENT HILL", d: "3:06" },
-            { n: "07", t: "FINAL FORM", d: "5:09" },
-            { n: "08", t: "PLUG PORTFOLIO", d: "3:16", hot: true },
-          ].map((tr) => (
-            <div key={tr.n} className="group flex items-center gap-4 p-4 bg-white/[0.03] hover:bg-red-600/10 border-l-2 border-transparent hover:border-red-600 transition-all cursor-pointer">
-              <span className="text-3xl font-black text-white/30 group-hover:text-red-600 w-12" style={{ fontFamily: "'Archivo Black', sans-serif" }}>{tr.n}</span>
-              <div className="flex-1">
-                <div className="flex items-center gap-2">
-                  <p className="text-xl font-black tracking-wide" style={{ fontFamily: "'Archivo Black', sans-serif" }}>{tr.t}</p>
-                  {tr.hot && <Flame className="w-4 h-4 text-red-500 fill-red-500" />}
+          {vaultTracks.map((tr) => {
+            const isPlaying = playingSrc === tr.src;
+            return (
+              <div
+                key={tr.n}
+                onClick={() => toggleTrack(tr.src)}
+                className={`group flex items-center gap-4 p-4 border-l-2 transition-all cursor-pointer ${
+                  isPlaying ? "bg-red-600/15 border-red-600" : "bg-white/[0.03] hover:bg-red-600/10 border-transparent hover:border-red-600"
+                }`}
+              >
+                <span className={`text-3xl font-black w-12 ${isPlaying ? "text-red-600" : "text-white/30 group-hover:text-red-600"}`} style={{ fontFamily: "'Archivo Black', sans-serif" }}>{tr.n}</span>
+                <div className="flex-1">
+                  <div className="flex items-center gap-2">
+                    <p className="text-xl font-black tracking-wide" style={{ fontFamily: "'Archivo Black', sans-serif" }}>{tr.t}</p>
+                    {tr.hot && <Flame className="w-4 h-4 text-red-500 fill-red-500" />}
+                  </div>
                 </div>
+                <span className="text-sm text-white/50 tabular-nums" style={{ fontFamily: "'Inter', sans-serif" }}>{tr.d}</span>
+                {isPlaying ? (
+                  <Pause className="w-5 h-5 fill-red-500 text-red-500" />
+                ) : (
+                  <Play className="w-5 h-5 opacity-0 group-hover:opacity-100 fill-red-500 text-red-500 transition-opacity" />
+                )}
               </div>
-              <span className="text-sm text-white/50 tabular-nums" style={{ fontFamily: "'Inter', sans-serif" }}>{tr.d}</span>
-              <Play className="w-5 h-5 opacity-0 group-hover:opacity-100 fill-red-500 text-red-500 transition-opacity" />
-            </div>
-          ))}
+            );
+          })}
         </div>
       </section>
 
