@@ -145,7 +145,7 @@ const DMag = () => {
           <div>
             <p className="text-red-500 text-sm tracking-[0.5em] mb-2" style={{ fontFamily: "'Permanent Marker', cursive" }}>// THE CATALOG</p>
             <h2 className="text-7xl md:text-9xl font-black uppercase" style={{ fontFamily: "'Archivo Black', sans-serif" }}>
-              THE <span className="text-red-600">TAPE</span>
+              THE <span className="text-red-600">VAULT</span>
             </h2>
           </div>
           <div className="flex gap-3">
@@ -158,28 +158,32 @@ const DMag = () => {
         </div>
 
         <div className="grid md:grid-cols-2 gap-2">
-          {[
-            { n: "01", t: "THE COLONY (REMASTERED)", d: "3:30", hot: true },
-            { n: "02", t: "SLIME 'EM OUT", d: "4:43" },
-            { n: "03", t: "LEW STERRETT", d: "2:37", hot: true },
-            { n: "04", t: "FILTHY", d: "2:49" },
-            { n: "05", t: "SNITCH", d: "1:42" },
-            { n: "06", t: "SILENT HILL", d: "3:06" },
-            { n: "07", t: "FINAL FORM", d: "5:09" },
-            { n: "08", t: "PLUG PORTFOLIO", d: "3:16", hot: true },
-          ].map((tr) => (
-            <div key={tr.n} className="group flex items-center gap-4 p-4 bg-white/[0.03] hover:bg-red-600/10 border-l-2 border-transparent hover:border-red-600 transition-all cursor-pointer">
-              <span className="text-3xl font-black text-white/30 group-hover:text-red-600 w-12" style={{ fontFamily: "'Archivo Black', sans-serif" }}>{tr.n}</span>
-              <div className="flex-1">
-                <div className="flex items-center gap-2">
-                  <p className="text-xl font-black tracking-wide" style={{ fontFamily: "'Archivo Black', sans-serif" }}>{tr.t}</p>
-                  {tr.hot && <Flame className="w-4 h-4 text-red-500 fill-red-500" />}
+          {vaultTracks.map((tr) => {
+            const isPlaying = playingSrc === tr.src;
+            return (
+              <div
+                key={tr.n}
+                onClick={() => toggleTrack(tr.src)}
+                className={`group flex items-center gap-4 p-4 border-l-2 transition-all cursor-pointer ${
+                  isPlaying ? "bg-red-600/15 border-red-600" : "bg-white/[0.03] hover:bg-red-600/10 border-transparent hover:border-red-600"
+                }`}
+              >
+                <span className={`text-3xl font-black w-12 ${isPlaying ? "text-red-600" : "text-white/30 group-hover:text-red-600"}`} style={{ fontFamily: "'Archivo Black', sans-serif" }}>{tr.n}</span>
+                <div className="flex-1">
+                  <div className="flex items-center gap-2">
+                    <p className="text-xl font-black tracking-wide" style={{ fontFamily: "'Archivo Black', sans-serif" }}>{tr.t}</p>
+                    {tr.hot && <Flame className="w-4 h-4 text-red-500 fill-red-500" />}
+                  </div>
                 </div>
+                <span className="text-sm text-white/50 tabular-nums" style={{ fontFamily: "'Inter', sans-serif" }}>{tr.d}</span>
+                {isPlaying ? (
+                  <Pause className="w-5 h-5 fill-red-500 text-red-500" />
+                ) : (
+                  <Play className="w-5 h-5 opacity-0 group-hover:opacity-100 fill-red-500 text-red-500 transition-opacity" />
+                )}
               </div>
-              <span className="text-sm text-white/50 tabular-nums" style={{ fontFamily: "'Inter', sans-serif" }}>{tr.d}</span>
-              <Play className="w-5 h-5 opacity-0 group-hover:opacity-100 fill-red-500 text-red-500 transition-opacity" />
-            </div>
-          ))}
+            );
+          })}
         </div>
       </section>
 
