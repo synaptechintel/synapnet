@@ -52,6 +52,24 @@ const tour = [
 
 const DMag = () => {
   const [cart, setCart] = useState<number[]>([]);
+  const [playingSrc, setPlayingSrc] = useState<string | null>(null);
+  const audioRef = useRef<HTMLAudioElement | null>(null);
+
+  useEffect(() => () => { audioRef.current?.pause(); }, []);
+
+  const toggleTrack = (src: string) => {
+    if (playingSrc === src && audioRef.current) {
+      if (audioRef.current.paused) { audioRef.current.play(); setPlayingSrc(src); }
+      else { audioRef.current.pause(); setPlayingSrc(null); }
+      return;
+    }
+    audioRef.current?.pause();
+    const a = new Audio(src);
+    a.addEventListener("ended", () => setPlayingSrc(null));
+    audioRef.current = a;
+    a.play();
+    setPlayingSrc(src);
+  };
 
   return (
     <div className="min-h-screen bg-[#0a0a0a] text-white overflow-x-hidden" style={{ fontFamily: "'Bebas Neue', 'Anton', 'Impact', sans-serif" }}>
