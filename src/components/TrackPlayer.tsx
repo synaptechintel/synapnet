@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useLayoutEffect, useRef } from "react";
 import { createPortal } from "react-dom";
 import { Play, Pause, Volume2, Headphones, SkipForward, SkipBack } from "lucide-react";
 
