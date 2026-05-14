@@ -1,8 +1,10 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import heroBg from "@/assets/hero-bg.jpg";
+import { TrackPlayerProvider } from "@/contexts/TrackPlayerContext";
 import GlitchHeader from "@/components/GlitchHeader";
 import TrackPlayer from "@/components/TrackPlayer";
+import TrackList from "@/components/TrackList";
 import SubscriptionTiers from "@/components/SubscriptionTiers";
 import EasterEggModal from "@/components/EasterEggModal";
 import ProtectedSections from "@/components/ProtectedSections";
