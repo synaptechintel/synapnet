@@ -1,6 +1,6 @@
 import { useState, useRef, useEffect } from "react";
 import { Link } from "react-router-dom";
-import { ArrowLeft, ShoppingBag, Flame, MapPin, Instagram, Music2, Play, Pause } from "lucide-react";
+import { ArrowLeft, ShoppingBag, Flame, MapPin, Instagram, Music2, Play, Pause, Mail, Calendar, Users } from "lucide-react";
 import dmagHero from "@/assets/dmag-hero.jpg";
 import theColony from "@/assets/tracks/the-colony-remastered.m4a";
 import slimeEmOut from "@/assets/tracks/slime-em-out.mp3";
@@ -43,16 +43,12 @@ const slogans = [
   "BLINK = LOSS",
 ];
 
-const tour = [
-  { date: "MAY 14", city: "DALLAS, TX", venue: "TREES DEEP ELLUM", status: "SOLD OUT" },
-  { date: "MAY 22", city: "HOUSTON, TX", venue: "WAREHOUSE LIVE", status: "ON SALE" },
-  { date: "JUN 03", city: "ATLANTA, GA", venue: "THE MASQUERADE", status: "ON SALE" },
-  { date: "JUN 18", city: "LOS ANGELES, CA", venue: "THE NOVO", status: "FEW LEFT" },
-];
-
 const DMag = () => {
   const [cart, setCart] = useState<number[]>([]);
   const [playingSrc, setPlayingSrc] = useState<string | null>(null);
+  const [rsvpName, setRsvpName] = useState("");
+  const [rsvpEmail, setRsvpEmail] = useState("");
+  const [rsvpSubmitted, setRsvpSubmitted] = useState(false);
   const audioRef = useRef<HTMLAudioElement | null>(null);
 
   useEffect(() => () => { audioRef.current?.pause(); }, []);
@@ -71,6 +67,15 @@ const DMag = () => {
     setPlayingSrc(src);
   };
 
+  const handleRsvp = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (rsvpName.trim() && rsvpEmail.trim()) {
+      setRsvpSubmitted(true);
+      setRsvpName("");
+      setRsvpEmail("");
+    }
+  };
+
   return (
     <div className="min-h-screen bg-[#0a0a0a] text-white overflow-x-hidden" style={{ fontFamily: "'Bebas Neue', 'Anton', 'Impact', sans-serif" }}>
       {/* Google fonts */}
@@ -86,8 +91,8 @@ const DMag = () => {
           <div className="hidden md:flex items-center gap-8 text-sm tracking-[0.25em]">
             <a href="#music" className="hover:text-red-500 transition-colors">MUSIC</a>
             <a href="#shop" className="hover:text-red-500 transition-colors">SHOP</a>
-            <a href="#tour" className="hover:text-red-500 transition-colors">TOUR</a>
-            <a href="#contact" className="hover:text-red-500 transition-colors">BOOK</a>
+            <a href="#event" className="hover:text-red-500 transition-colors">EVENT</a>
+            <a href="#contact" className="hover:text-red-500 transition-colors">CONTACT</a>
           </div>
           <button className="relative flex items-center gap-2 px-4 py-1.5 bg-red-600 hover:bg-red-500 text-black font-bold text-sm tracking-widest" style={{ fontFamily: "'Archivo Black', sans-serif" }}>
             <ShoppingBag className="w-4 h-4" /> CART [{cart.length}]
@@ -229,43 +234,98 @@ const DMag = () => {
         </div>
       </section>
 
-      {/* TOUR */}
-      <section id="tour" className="max-w-7xl mx-auto px-5 py-24">
+      {/* SALES TRAINING EVENT */}
+      <section id="event" className="max-w-7xl mx-auto px-5 py-24">
         <div className="mb-12">
-          <p className="text-red-500 text-sm tracking-[0.5em] mb-2" style={{ fontFamily: "'Permanent Marker', cursive" }}>// 2026 RUN</p>
+          <p className="text-red-500 text-sm tracking-[0.5em] mb-2" style={{ fontFamily: "'Permanent Marker', cursive" }}>// JUNE 2026</p>
           <h2 className="text-7xl md:text-9xl font-black uppercase leading-[0.9]" style={{ fontFamily: "'Archivo Black', sans-serif" }}>
-            DON'T BLINK <span className="text-red-600">TOUR</span>
+            SALES <span className="text-red-600">TRAINING</span>
           </h2>
+          <p className="mt-4 text-xl text-white/70 max-w-xl" style={{ fontFamily: "'Inter', sans-serif" }}>
+            Level up your hustle. A one-day intensive for serious closers.
+          </p>
         </div>
 
-        <div className="space-y-1">
-          {tour.map((t) => (
-            <div key={t.date} className="grid grid-cols-12 gap-4 items-center p-5 bg-white/[0.03] hover:bg-red-600/10 border-l-4 border-red-600 transition-all">
-              <div className="col-span-3 md:col-span-2 text-2xl md:text-3xl font-black text-red-500" style={{ fontFamily: "'Archivo Black', sans-serif" }}>
-                {t.date}
+        <div className="grid md:grid-cols-3 gap-6">
+          <div className="md:col-span-2 p-8 bg-white/[0.03] border-l-4 border-red-600">
+            <div className="flex items-center gap-3 mb-6">
+              <Calendar className="w-6 h-6 text-red-500" />
+              <span className="text-2xl font-black text-red-500" style={{ fontFamily: "'Archivo Black', sans-serif" }}>JUNE 2026 — DALLAS, TX</span>
+            </div>
+            <div className="space-y-4">
+              <div className="flex items-start gap-3">
+                <Users className="w-5 h-5 text-red-500 mt-1 shrink-0" />
+                <div>
+                  <p className="font-black text-lg" style={{ fontFamily: "'Archivo Black', sans-serif" }}>PROSPECTING & PIPELINE</p>
+                  <p className="text-sm text-white/60" style={{ fontFamily: "'Inter', sans-serif" }}>Build a bulletproof lead flow that never goes dry.</p>
+                </div>
               </div>
-              <div className="col-span-9 md:col-span-5">
-                <p className="text-xl md:text-2xl font-black tracking-wide flex items-center gap-2" style={{ fontFamily: "'Archivo Black', sans-serif" }}>
-                  <MapPin className="w-5 h-5 text-red-500" /> {t.city}
-                </p>
+              <div className="flex items-start gap-3">
+                <Users className="w-5 h-5 text-red-500 mt-1 shrink-0" />
+                <div>
+                  <p className="font-black text-lg" style={{ fontFamily: "'Archivo Black', sans-serif" }}>CLOSING PSYCHOLOGY</p>
+                  <p className="text-sm text-white/60" style={{ fontFamily: "'Inter', sans-serif" }}>Read the room. Handle objections. Lock in the deal.</p>
+                </div>
               </div>
-              <div className="col-span-7 md:col-span-3 text-sm text-white/60 tracking-widest" style={{ fontFamily: "'Inter', sans-serif" }}>
-                {t.venue}
-              </div>
-              <div className="col-span-5 md:col-span-2 text-right">
-                <span className={`inline-block px-3 py-1.5 text-xs font-black tracking-widest ${
-                  t.status === "SOLD OUT" ? "bg-white/10 text-white/40" : "bg-red-600 text-black hover:bg-red-500 cursor-pointer"
-                }`} style={{ fontFamily: "'Archivo Black', sans-serif" }}>
-                  {t.status === "SOLD OUT" ? t.status : "TIX"}
-                </span>
+              <div className="flex items-start gap-3">
+                <Users className="w-5 h-5 text-red-500 mt-1 shrink-0" />
+                <div>
+                  <p className="font-black text-lg" style={{ fontFamily: "'Archivo Black', sans-serif" }}>SCALING & SYSTEMS</p>
+                  <p className="text-sm text-white/60" style={{ fontFamily: "'Inter', sans-serif" }}>Turn one rep into a team that moves units on autopilot.</p>
+                </div>
               </div>
             </div>
-          ))}
+          </div>
+
+          <div id="contact" className="p-8 bg-red-600/10 border border-red-600/30">
+            <p className="text-red-500 text-sm tracking-[0.5em] mb-4" style={{ fontFamily: "'Permanent Marker', cursive" }}>// RSVP</p>
+            <h3 className="text-3xl font-black mb-6" style={{ fontFamily: "'Archivo Black', sans-serif" }}>LOCK YOUR SEAT</h3>
+            {rsvpSubmitted ? (
+              <div className="text-center py-8">
+                <p className="text-2xl font-black text-red-500 mb-2" style={{ fontFamily: "'Archivo Black', sans-serif" }}>YOU'RE IN.</p>
+                <p className="text-white/70 text-sm" style={{ fontFamily: "'Inter', sans-serif" }}>We'll hit you with the details soon.</p>
+              </div>
+            ) : (
+              <form onSubmit={handleRsvp} className="space-y-4">
+                <div>
+                  <label className="text-xs tracking-widest text-white/50 mb-1 block" style={{ fontFamily: "'Inter', sans-serif" }}>NAME</label>
+                  <input
+                    type="text"
+                    value={rsvpName}
+                    onChange={(e) => setRsvpName(e.target.value)}
+                    className="w-full bg-black border border-white/20 px-4 py-3 text-white placeholder:text-white/30 focus:border-red-500 focus:outline-none transition-colors"
+                    placeholder="Your name"
+                    required
+                    style={{ fontFamily: "'Inter', sans-serif" }}
+                  />
+                </div>
+                <div>
+                  <label className="text-xs tracking-widest text-white/50 mb-1 block" style={{ fontFamily: "'Inter', sans-serif" }}>EMAIL</label>
+                  <input
+                    type="email"
+                    value={rsvpEmail}
+                    onChange={(e) => setRsvpEmail(e.target.value)}
+                    className="w-full bg-black border border-white/20 px-4 py-3 text-white placeholder:text-white/30 focus:border-red-500 focus:outline-none transition-colors"
+                    placeholder="you@email.com"
+                    required
+                    style={{ fontFamily: "'Inter', sans-serif" }}
+                  />
+                </div>
+                <button
+                  type="submit"
+                  className="w-full py-4 bg-red-600 hover:bg-red-500 text-black font-black text-lg tracking-widest transition-colors"
+                  style={{ fontFamily: "'Archivo Black', sans-serif" }}
+                >
+                  RSVP NOW
+                </button>
+              </form>
+            )}
+          </div>
         </div>
       </section>
 
       {/* CONTACT / FOOTER */}
-      <footer id="contact" className="bg-black border-t border-red-600/30 py-16">
+      <footer className="bg-black border-t border-red-600/30 py-16">
         <div className="max-w-7xl mx-auto px-5 grid md:grid-cols-3 gap-12">
           <div>
             <h3 className="text-5xl font-black text-red-600 mb-4" style={{ fontFamily: "'Permanent Marker', cursive" }}>dMAG</h3>
@@ -274,9 +334,10 @@ const DMag = () => {
             </p>
           </div>
           <div>
-            <h4 className="text-xs tracking-[0.4em] text-white/40 mb-4" style={{ fontFamily: "'Inter', sans-serif" }}>BOOKING / PRESS</h4>
-            <p className="text-lg font-bold" style={{ fontFamily: "'Inter', sans-serif" }}>booking@dmag.world</p>
-            <p className="text-lg font-bold" style={{ fontFamily: "'Inter', sans-serif" }}>press@dmag.world</p>
+            <h4 className="text-xs tracking-[0.4em] text-white/40 mb-4" style={{ fontFamily: "'Inter', sans-serif" }}>CONTACT</h4>
+            <a href="mailto:synaptechintelligencenetwork@gmail.com" className="flex items-center gap-2 text-lg font-bold hover:text-red-500 transition-colors" style={{ fontFamily: "'Inter', sans-serif" }}>
+              <Mail className="w-5 h-5 text-red-500" /> synaptechintelligencenetwork@gmail.com
+            </a>
           </div>
           <div>
             <h4 className="text-xs tracking-[0.4em] text-white/40 mb-4" style={{ fontFamily: "'Inter', sans-serif" }}>FOLLOW</h4>
