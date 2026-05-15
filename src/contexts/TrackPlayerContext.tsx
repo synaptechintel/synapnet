@@ -27,6 +27,7 @@ export const tracks: Track[] = [
   { id: 1, title: "The Colony (Remastered)", artist: "dMAG", duration: 210, src: theColony, listeners: 4820 },
   { id: 2, title: "Slime 'Em Out (Flatbush Zombies Remix)", artist: "dMAG", duration: 283, src: slimeEmOut, listeners: 3125 },
   { id: 3, title: "Lew Sterrett", artist: "dMAG", duration: 157, src: lewSterrett, listeners: 2680 },
+  { id: 13, title: "Snitches", artist: "dMAG", duration: 0, src: "/audio/snitches.mp3", listeners: 2510 },
   { id: 4, title: "Filthy", artist: "dMAG", duration: 169, src: filthy, listeners: 2418 },
   { id: 5, title: "Snitch", artist: "dMAG", duration: 102, src: snitch, listeners: 1987 },
   { id: 6, title: "Silent Hill", artist: "dMAG", duration: 186, src: silentHill, listeners: 1742 },
