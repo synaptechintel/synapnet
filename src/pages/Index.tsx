@@ -107,6 +107,22 @@ const Index = () => {
               <Flame className="w-6 h-6 relative z-10" />
             </Link>
           </div>
+
+          {/* Book CTA */}
+          <div className="mt-6 flex justify-center">
+            <Link
+              to="/book"
+              className="inline-flex items-center gap-3 px-8 py-4 border font-display text-sm md:text-base font-black tracking-[0.25em] transition-all hover:scale-105"
+              style={{
+                borderColor: "hsl(var(--neon-cyan))",
+                color: "hsl(var(--neon-cyan))",
+                background: "hsl(var(--neon-cyan) / 0.06)",
+                boxShadow: "0 0 24px hsl(var(--neon-cyan) / 0.3)",
+              }}
+            >
+              READ // RECURSIVE FRACTAL AI COSMOLOGY
+            </Link>
+          </div>
         </div>
       </section>
 
