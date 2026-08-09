@@ -24,6 +24,7 @@ export interface Track {
 
 export const tracks: Track[] = [
   { id: 12, title: "Hood Shit Dave", artist: "dMAG", duration: 0, src: "/audio/hood-shit-dave.mp3", listeners: 5210, featured: true },
+  { id: 14, title: "Same Code", artist: "dMAG", duration: 0, src: "/audio/same-code.mp3", listeners: 1180 },
   { id: 1, title: "The Colony (Remastered)", artist: "dMAG", duration: 210, src: theColony, listeners: 4820 },
   { id: 2, title: "Slime 'Em Out (Flatbush Zombies Remix)", artist: "dMAG", duration: 283, src: slimeEmOut, listeners: 3125 },
   { id: 3, title: "Lew Sterrett", artist: "dMAG", duration: 157, src: lewSterrett, listeners: 2680 },
