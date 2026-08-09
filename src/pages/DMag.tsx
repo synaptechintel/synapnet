@@ -241,7 +241,7 @@ const DMag = () => {
           </div>
           <h1 className="text-[18vw] md:text-[14rem] leading-[0.85] font-black uppercase" style={{ fontFamily: "'Archivo Black', sans-serif", letterSpacing: "-0.04em", animation: "vhs-flicker 6s infinite" }}>
             <span className="block text-white">dMAG</span>
-            <span className="block text-red-600 -mt-4 md:-mt-12" style={{ textShadow: "6px 6px 0 #000, -2px -2px 0 #fff" }}>MERCH</span>
+            <span className="block text-red-600 -mt-4 md:-mt-12 text-[12vw] md:text-[9rem]" style={{ textShadow: "6px 6px 0 #000, -2px -2px 0 #fff" }}>DON'T BLINK</span>
           </h1>
           <p className="mt-6 text-xl md:text-3xl max-w-2xl uppercase leading-tight text-white/90" style={{ fontFamily: "'Inter', sans-serif" }}>
             Official street-certified apparel. dMAG × SynapTech × STINT-NET.
