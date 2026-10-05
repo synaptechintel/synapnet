@@ -13,6 +13,9 @@ import snitch from "@/assets/tracks/snitch.m4a";
 import silentHill from "@/assets/tracks/silent-hill.m4a";
 import finalForm from "@/assets/tracks/final-form.m4a";
 import plugPortfolio from "@/assets/tracks/plug-portfolio.m4a";
+import redDotWeatherAsset from "@/assets/tracks/red-dot-weather.mp3.asset.json";
+import iykykAsset from "@/assets/tracks/iykyk.mp3.asset.json";
+import choppaSongAsset from "@/assets/tracks/choppa-song-dmag-ft-gordo-throwd.mp3.asset.json";
 
 // Collection imagery
 import streetTee from "@/assets/merch/street-tee-plug.jpg";
@@ -89,15 +92,18 @@ const collections = [
 ];
 
 const vaultTracks = [
-  { n: "01", t: "HOOD SHIT DAVE", d: "0:00", src: "/audio/hood-shit-dave.mp3", hot: true },
-  { n: "02", t: "THE COLONY (REMASTERED)", d: "3:30", src: theColony, hot: true },
-  { n: "03", t: "SLIME 'EM OUT", d: "4:43", src: slimeEmOut },
-  { n: "04", t: "LEW STERRETT", d: "2:37", src: lewSterrett, hot: true },
-  { n: "05", t: "FILTHY", d: "2:49", src: filthy },
-  { n: "06", t: "SNITCH", d: "1:42", src: snitch },
-  { n: "07", t: "SILENT HILL", d: "3:06", src: silentHill },
-  { n: "08", t: "FINAL FORM", d: "5:09", src: finalForm },
-  { n: "09", t: "PLUG PORTFOLIO", d: "3:16", src: plugPortfolio, hot: true },
+  { n: "01", t: "RED DOT WEATHER", d: "4:16", src: redDotWeatherAsset.url, hot: true },
+  { n: "02", t: "IYKYK", d: "2:53", src: iykykAsset.url, hot: true },
+  { n: "03", t: "CHOPPA SONG — FT. GORDO THROWD", d: "4:13", src: choppaSongAsset.url, hot: true },
+  { n: "04", t: "HOOD SHIT DAVE", d: "0:00", src: "/audio/hood-shit-dave.mp3", hot: true },
+  { n: "05", t: "THE COLONY (REMASTERED)", d: "3:30", src: theColony, hot: true },
+  { n: "06", t: "SLIME 'EM OUT", d: "4:43", src: slimeEmOut },
+  { n: "07", t: "LEW STERRETT", d: "2:37", src: lewSterrett, hot: true },
+  { n: "08", t: "FILTHY", d: "2:49", src: filthy },
+  { n: "09", t: "SNITCH", d: "1:42", src: snitch },
+  { n: "10", t: "SILENT HILL", d: "3:06", src: silentHill },
+  { n: "11", t: "FINAL FORM", d: "5:09", src: finalForm },
+  { n: "12", t: "PLUG PORTFOLIO", d: "3:16", src: plugPortfolio, hot: true },
 ];
 
 const slogans = [

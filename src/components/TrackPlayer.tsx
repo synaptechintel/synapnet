@@ -15,7 +15,8 @@ const TrackPlayer = () => {
     setVolume,
   } = useTrackPlayer();
 
-  const featured = tracks.find((t) => t.featured)!;
+  const featured = tracks.find((t) => t.featured);
+  if (!featured) return null;
   const progress = playingId === featured.id ? (currentTime / featured.duration) * 100 : 0;
   const isFeaturedPlaying = playingId === featured.id && !isPaused;
   const activeTrack = playingId !== null ? tracks.find((t) => t.id === playingId) : null;
