@@ -2,6 +2,7 @@ import { useState } from "react";
 import { ReactReader } from "react-reader";
 import { Link } from "react-router-dom";
 import { ArrowLeft, BookOpen, Download } from "lucide-react";
+import bookCoverAsset from "@/assets/books/recursive-fractal-ai-cosmology-cover.jpg.asset.json";
 
 const BOOK_URL = "/books/recursive-fractal-ai-cosmology.epub";
 
@@ -27,7 +28,8 @@ const Book = () => {
         </a>
       </header>
 
-      <main className="h-[calc(100vh-65px)] bg-card">
+      <main className="relative h-[calc(100vh-65px)] bg-card">
+        <img src={bookCoverAsset.url} alt="" className="sr-only" />
         <ReactReader
           url={BOOK_URL}
           location={location}

@@ -11,6 +11,9 @@ import plugPortfolio from "@/assets/tracks/plug-portfolio.m4a";
 import whipple5 from "@/assets/tracks/whipple-5.m4a";
 import phiRising from "@/assets/tracks/phi-rising.mp3";
 import mobiusLoop from "@/assets/tracks/mobius-loop.mp3";
+import redDotWeatherAsset from "@/assets/tracks/red-dot-weather.mp3.asset.json";
+import iykykAsset from "@/assets/tracks/iykyk.mp3.asset.json";
+import choppaSongAsset from "@/assets/tracks/choppa-song-dmag-ft-gordo-throwd.mp3.asset.json";
 
 export interface Track {
   id: number;
@@ -23,7 +26,10 @@ export interface Track {
 }
 
 export const tracks: Track[] = [
-  { id: 12, title: "Hood Shit Dave", artist: "dMAG", duration: 0, src: "/audio/hood-shit-dave.mp3", listeners: 5210, featured: true },
+  { id: 15, title: "Red Dot Weather", artist: "dMAG", duration: 256, src: redDotWeatherAsset.url, listeners: 3870, featured: true },
+  { id: 16, title: "IYKYK", artist: "dMAG", duration: 173, src: iykykAsset.url, listeners: 2240 },
+  { id: 17, title: "Choppa Song", artist: "dMAG ft. Gordo ThrowD", duration: 253, src: choppaSongAsset.url, listeners: 1980 },
+  { id: 12, title: "Hood Shit Dave", artist: "dMAG", duration: 0, src: "/audio/hood-shit-dave.mp3", listeners: 5210 },
   { id: 14, title: "Same Code", artist: "dMAG", duration: 0, src: "/audio/same-code.mp3", listeners: 1180 },
   { id: 1, title: "The Colony (Remastered)", artist: "dMAG", duration: 210, src: theColony, listeners: 4820 },
   { id: 2, title: "Slime 'Em Out (Flatbush Zombies Remix)", artist: "dMAG", duration: 283, src: slimeEmOut, listeners: 3125 },

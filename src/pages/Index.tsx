@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import heroBg from "@/assets/hero-bg.jpg";
+import bookCoverAsset from "@/assets/books/recursive-fractal-ai-cosmology-cover.jpg.asset.json";
 import { TrackPlayerProvider } from "@/contexts/TrackPlayerContext";
 import GlitchHeader from "@/components/GlitchHeader";
 import TrackPlayer from "@/components/TrackPlayer";
@@ -9,7 +10,8 @@ import SubscriptionTiers from "@/components/SubscriptionTiers";
 import EasterEggModal from "@/components/EasterEggModal";
 import ProtectedSections from "@/components/ProtectedSections";
 import AudioVisualizer from "@/components/AudioVisualizer";
-import { Shield, Terminal, Music, Flame } from "lucide-react";
+import { Shield, Terminal, Music, Flame, BookOpen, Download } from "lucide-react";
+import { Button } from "@/components/ui/button";
 
 const Index = () => {
   const [easterEggOpen, setEasterEggOpen] = useState(false);
@@ -108,20 +110,30 @@ const Index = () => {
             </Link>
           </div>
 
-          {/* Book CTA */}
-          <div className="mt-6 flex justify-center">
-            <Link
-              to="/book"
-              className="inline-flex items-center gap-3 px-8 py-4 border font-display text-sm md:text-base font-black tracking-[0.25em] transition-all hover:scale-105"
-              style={{
-                borderColor: "hsl(var(--neon-cyan))",
-                color: "hsl(var(--neon-cyan))",
-                background: "hsl(var(--neon-cyan) / 0.06)",
-                boxShadow: "0 0 24px hsl(var(--neon-cyan) / 0.3)",
-              }}
-            >
-              READ // RECURSIVE FRACTAL AI COSMOLOGY
-            </Link>
+          {/* Book feature */}
+          <div className="mt-10 mx-auto max-w-3xl border border-primary/30 bg-card/90 p-4 md:p-6 neon-border">
+            <div className="grid grid-cols-[104px_1fr] md:grid-cols-[150px_1fr] gap-5 md:gap-7 items-center">
+              <Link to="/book" aria-label="Read Recursive Fractal AI Cosmology">
+                <img
+                  src={bookCoverAsset.url}
+                  alt="Recursive Fractal AI Cosmology book cover"
+                  className="w-full aspect-[5/8] object-cover border border-primary/30 shadow-lg"
+                />
+              </Link>
+              <div className="min-w-0">
+                <p className="text-[10px] md:text-xs font-mono tracking-[0.25em] text-primary uppercase mb-2">// Featured publication</p>
+                <h2 className="font-display text-base md:text-2xl font-black leading-tight text-foreground">RECURSIVE FRACTAL AI COSMOLOGY</h2>
+                <p className="text-xs md:text-sm text-muted-foreground mt-2 mb-4">Read the complete book online or download the EPUB.</p>
+                <div className="flex flex-col sm:flex-row gap-2">
+                  <Button asChild size="sm" className="rounded-none font-display tracking-widest">
+                    <Link to="/book"><BookOpen /> READ BOOK</Link>
+                  </Button>
+                  <Button asChild size="sm" variant="outline" className="rounded-none font-display tracking-widest">
+                    <a href="/books/recursive-fractal-ai-cosmology.epub" download><Download /> EPUB</a>
+                  </Button>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </section>
